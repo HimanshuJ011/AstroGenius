@@ -22,7 +22,7 @@ const HeaderSection: React.FC = () => {
                 "animate-gradient bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent"
               )}
             >
-              Introducing AstroScope
+              Introducing AstroGenius
             </span>
           </AnimatedGradientText>
 

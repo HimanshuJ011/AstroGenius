@@ -20,12 +20,6 @@ This AstroGenius is an AI-powered SaaS platform designed to provide personalized
 3. View your personalized horoscope and name suggestions.
 4. Get AI-generated reports.
 
-## Tech Stack
-
-- **Frontend:** Next.js
-- **Database:** MongoDB
-- **AI Integration:** Generative AI APIs
-<!-- - **Payment Gateway:** PayPal -->
 
 ## License
 

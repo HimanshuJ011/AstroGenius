@@ -20,11 +20,6 @@ This AstroGenius is an AI-powered SaaS platform designed to provide personalized
 3. View your personalized horoscope and name suggestions.
 4. Get AI-generated reports.
 
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
 ## Contact
 
 For any questions or support, please reach out:

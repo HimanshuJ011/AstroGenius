@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import DisableDevTools from "@/components/DisableDevTools";
-
+import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
   title: "Astro Genius",
   description: "Generate Astro Report in Click.",
@@ -22,6 +22,8 @@ export default function RootLayout({
     <html suppressHydrationWarning suppressContentEditableWarning lang="en">
       <body>
         <DisableDevTools />
+        <Analytics />
+
         {children}
       </body>
     </html>

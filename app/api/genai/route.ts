@@ -71,7 +71,6 @@ Birth Dasha: ${context.birthDasha}
 Birth Date: ${context.birthDate}
 Birth Time: ${context.birthTime}
 Day of Week: ${context.birthTime}
-Birth Time Zone: ${context.birthTimeZone}
 Current Dasha: ${context.currentDasha}
      `
         : ""

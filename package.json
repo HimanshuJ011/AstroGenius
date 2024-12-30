@@ -22,6 +22,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.15",
+    "google-auth-library": "^9.15.0",
+    "googleapis": "^144.0.0",
     "html2canvas": "^1.4.1",
     "indian-astrology": "^1.0.4",
     "jspdf": "^2.5.2",

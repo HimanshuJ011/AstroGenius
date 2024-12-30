@@ -16,6 +16,7 @@ const Form = () => {
   const [step, setStep] = useState<number>(1);
   const [formData, setFormData] = useState<FormData>({
     name: "",
+    email: "",
     birthDate: "",
     birthTime: "",
     location: "",
@@ -124,14 +125,26 @@ const Form = () => {
   };
 
   const isFormValid =
-    formData.name && formData.birthDate && formData.birthTime && searchQuery;
-
+    formData.name &&
+    formData.email &&
+    formData.birthDate &&
+    formData.birthTime &&
+    searchQuery;
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
     let isValid = true;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
+      isValid = false;
+    }
+
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
       isValid = false;
     }
 
@@ -288,8 +301,20 @@ const Form = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
-      await calculateHoroscope();
-      setStep(2);
+      try {
+        await calculateHoroscope();
+        await fetch("/api/contacts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+          }),
+        });
+        setStep(2);
+      } catch (error) {
+        console.error("Error saving contact:", error);
+      }
     }
   };
 
@@ -627,7 +652,25 @@ const Form = () => {
                         inputClasses,
                         errors.name && "border-red-500"
                       )}
-                      placeholder="Your full name"
+                      placeholder="e.g. John"
+                      maxLength={50}
+                    />
+                    {errors.name && (
+                      <p className={errorClasses}>{errors.name}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className={labelClasses}>Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={cn(
+                        inputClasses,
+                        errors.email && "border-red-500"
+                      )}
+                      placeholder="e.g. john@mail.com"
                       maxLength={50}
                     />
                     {errors.name && (

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   }
 
   const genAI = new GoogleGenerativeAI(geminiApiKey);
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
   try {
     const body = await req.json();
@@ -24,37 +24,12 @@ export async function POST(req: Request) {
       );
     }
 
-    // More comprehensive input sanitization
     const sanitizedInput = input
       .replace(/[^\w\s,.()-]/g, "") // Remove special characters
       .trim()
       .slice(0, 5000); // Limit input length
 
     console.log("SIP " + sanitizedInput);
-
-    // Enhanced prompt with optional context
-
-    // const prompt = `Provide a comprehensive astrological analysis based on these details:
-    // Astrological Data: """${sanitizedInput}"""
-
-    // ${
-    //   context
-    //     ? `Additional Context:
-    // Zodiac Sign: ${context.zodiacSign}
-    // Birth Date: ${context.birthDate}`
-    //     : ""
-    // }
-
-    // Please analyze the following life aspects with depth and insight:
-    // 1. Personal Growth
-    // 2. Emotional Landscape
-    // 3. Career Potential
-    // 4. Relationship Dynamics
-    // 5. Spiritual Journey
-
-    // Conclude with actionable life guidance and transformative tips.
-
-    // Format the response in clear, structured paragraphs with headings.`;
 
     const newPrompt = `Based on the provided horoscopic details, craft a comprehensive and personalized horoscope report for an individual with the Zodiac Sign Gemini Using this data, create predictions for the following areas of life:
 
@@ -102,6 +77,8 @@ Generate and Display Birth Details and give me all in rich format and then gener
 
 **Summary**
 - Predict a Summary from birthDasha to CurrentDasha and on basis of CurrentDasha 
+
+
 
 `;
 
